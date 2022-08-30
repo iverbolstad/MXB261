@@ -3,19 +3,14 @@ size = 40; % Bars
 
 figure;
 h_pd = histogram(Data0, size, 'Normalization', 'probability'); % Probability distribution of Data0
+xlabel('Samples')
+ylabel('Probability for each sample')
+set(gca, 'fontsize', 18);
 
 h_val = h_pd.Values;
-csum = cumsum(h_val); % Cumulative 
+csum = cumsum(h_val); % Cumulative sum of Data0
 
-% figure;
-% cdf = bar(csum);
-% title('CDF')
-% xlabel('value')
-
-%list_pkt = zeros(1, size);
-
-
-%rng(1); Seed for reproducibility of results
+rng(1); % Seed for reproducibility of results
 DataNew = zeros(); % Array to inset new random data from Data0
 
 % DataNew generated from cumulative sum of Data0
@@ -42,13 +37,24 @@ for i = 1:500
 end
 
 list_pkt1 = (1:size);
-figure
+fig1 = figure;
 subplot(1,2,1)
 cdf_c = histogram(DataNew, size, 'Normalization','pdf');
+title('DataNew')
 set(gca,'FontSize',18);
 subplot(1,2,2);
 d0b = bar(list_pkt1, h_val);
+title('Data0')
 set(gca,'FontSize',18);
+
+han=axes(fig1,'visible','off'); 
+    han.Title.Visible='on';
+    han.XLabel.Visible='on';
+    han.YLabel.Visible='on';
+    ylabel(han,'Probability pr. bin');
+    xlabel(han,'Probability value');
+    title(han,'');
+    set(gca, 'fontsize', 18);
 
 %% Kullback-Leibler
 
