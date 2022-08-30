@@ -2,6 +2,17 @@
 Data0 = importdata('sample2022_ass1.txt');
 h = histogram(Data0, 20, 'Normalization','cdf');
 
+%histogram(Data0, 20, 'Normalization','probability'); probability
+%distribution
+
+% Liste
+% Plot probability dist
+% construct CDF, cumsum of probability distribution
+% plot CDF, will be descrete, need continous function
+% use midpoints and binedges
+% sample from continous function
+
+
 hval = h.Values;
 
 figure;
